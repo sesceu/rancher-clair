@@ -1,6 +1,6 @@
 name: Clair # Name of the Catalog Entry
 description: |
-  CLair (Container Vulnerability Analysis Service)
+  Clair (Container Vulnerability Analysis Service)
 # Description of the Catalog Entry
 version: 0.1 # Version of the Catalog to be used
 category: Community # Category to be used for searching catalog entries

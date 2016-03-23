@@ -4,10 +4,6 @@
   description: "Container Vulnerability Analysis Service"
   uuid: clair-0
   minimum_rancher_version: v0.59.1
-  questions:
-    - variable: "HOST_LABEL"
-      label: "Host include label"
-      description: "Specify a host label here that can be used to include deployment of the clair service"
-      type: "string"
-      default: ""
-      required: false
+  
+clair:
+  scale: 1
