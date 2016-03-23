@@ -6,7 +6,7 @@ clair:
     io.rancher.scheduler.global: 'true'
     # Host MUST have the label `key1=value1`
     #io.rancher.container.pull_image: always
-    #io.rancher.scheduler.affinity:host_label_ne: ${HOST_EXCLUDE_LABEL}
+    io.rancher.scheduler.affinity:host_label_soft: ${HOST_LABEL}
     # Host MUST NOT have the label `key2=value2`
     #io.rancher.scheduler.affinity:host_label_ne: key2=value2
     # Host SHOULD have the label `key3=value3`

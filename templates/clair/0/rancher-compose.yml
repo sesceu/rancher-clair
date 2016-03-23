@@ -5,38 +5,9 @@
   uuid: clair-0
   minimum_rancher_version: v0.59.1
   questions:
-    - variable: "QUEUE_NAME"
-      label: "Custom rendering queue name"
-      description: "Specify the custom queue name for rederning tasks"
-      type: "string"
-      default: "celery"
-      required: true
-    - variable: "NVIDIA_DRIVER_VERSION"
-      label: "Nvidia driver version"
-      description: "Specify the same version of the host Nvidia driver version number"
-      type: "enum"
-      default: 346.72
-      options:
-        - NA
-        - 346.42
-        - 346.72
-        - 352.63
-      required: true
-    - variable: "NVIDIA_CUDA_VERSION"
-      label: "Nvidia CUDA version"
-      #description: "Specify a host label here that can be used to exclude deployment of the sysdig container on any given host. Eg: sysdig.exclude_sysdig=true (you could then add the label 'sysdig.exclude_sysdig=true' to any host to exclude sysdig from that host)."
-      type: "enum"
-      default: 7.0
-      options: # List of options if using type of `enum`
-        - NA
-        - 6.5
-        - 7.0
-        - 7.5
-      required: true
     - variable: "HOST_LABEL"
       label: "Host include label"
-      description: "Specify a host label here that can be used to include deployment of the blender container on any given host. Eg: gpu_no=4
-      (you could then add the label 'gpu_no=4' to any host to run the container)."
+      description: "Specify a host label here that can be used to include deployment of the clair service"
       type: "string"
-      default: "gpu_no=4"
-      required: true
+      default: ""
+      required: false
