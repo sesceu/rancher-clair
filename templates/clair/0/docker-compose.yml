@@ -1,0 +1,48 @@
+clair:
+  container_name: clair_clair
+  image: quay.io/coreos/clair
+  labels:
+    # Make mysql a global service
+    io.rancher.scheduler.global: 'true'
+    # Host MUST have the label `key1=value1`
+    #io.rancher.container.pull_image: always
+    #io.rancher.scheduler.affinity:host_label_ne: ${HOST_EXCLUDE_LABEL}
+    # Host MUST NOT have the label `key2=value2`
+    #io.rancher.scheduler.affinity:host_label_ne: key2=value2
+    # Host SHOULD have the label `key3=value3`
+    #io.rancher.scheduler.affinity:c: key3=value3
+    # Host SHOULD NOT have the label `key4=value4`
+    #io.rancher.scheduler.affinity:host_label_soft_ne: key4=value4  command: celery worker -B -A celery_config --loglevel=debug
+  depends_on:
+    - postgres
+  links:
+    - postgres
+  ports:
+    - "6060-6061:6060-6061"
+
+  environment:
+    - QUEUE_NAME=${QUEUE_NAME}
+
+  command: [-config, /config/config.yaml]
+  volumes:
+    - /tmp:/tmp
+    - /etc/localtime:/etc/localtime:ro
+  volumes_from:
+    - clair-config-volume
+
+postgres:
+    container_name: clair_postgres
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+
+clair-config-volume:
+  net: none
+  labels:
+    io.rancher.container.hostname_override: container_name
+    io.rancher.container.start_once: true
+  volumes:
+    - /config
+  entrypoint: /bin/true
+  image: youyu/clair-config
